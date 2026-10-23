@@ -1,0 +1,20 @@
+services:
+  neoned:
+    build: .
+    restart: unless-stopped
+    networks:
+      - traefik_public
+    environment:
+      - API_KEY=
+      - DATABASE_URL=file:./dev.db
+      - NODE_ENV=production
+    volumes:
+      - ./dev.db:/app/dev.db
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.neoned.rule=Host(`neoned.eaji.cc`)'
+      - 'traefik.http.routers.neoned.entrypoints=websecure'
+
+networks:
+  traefik_public:
+    external: true
