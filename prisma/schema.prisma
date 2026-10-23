@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Stop {
+  id String @id
+  name String
+  lat Float
+  lng Float
+  wheelchairAccessible Int // 0 means unknown, 1 means yes, 2 means no
+  quays Quay[]
+}
+
+model Quay {
+  id String @id
+  stopId String
+  stop Stop @relation(fields: [stopId], references: [id])
+  name String
+  lat Float
+  lng Float
+  wheelchairAccessible Int
+}

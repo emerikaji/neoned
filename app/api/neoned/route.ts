@@ -1,21 +1,41 @@
-import { NextResponse } from "next/server";
-import { Naolib } from "@/types/naolib"; // Adjust import path to where you save your types
+import { NextResponse } from "next/server"
+import { PrismaClient } from "@/app/generated/prisma/client"
+import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3"
+
+// Initialize Prisma with the SQLite adapter
+const adapter = new PrismaBetterSqlite3({
+  url: "file:./dev.db",
+})
+
+const prisma = new PrismaClient({
+  adapter,
+})
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const endpoint = searchParams.get("endpoint");
-  searchParams.delete("endpoint");
+  const { searchParams } = new URL(request.url)
+  const query = searchParams.get("q")
 
-  const apiKey = process.env.API_KEY;
-  const targetUrl = `https://api.staging.okina.fr/gateway/sem/realtime/siri/2.0/${endpoint}.json?api-key=${apiKey}&${searchParams.toString()}`;
-  console.log(targetUrl);
+  if (!query || query.trim().length === 0) {
+    return NextResponse.json([])
+  }
+
   try {
-    const response = await fetch(targetUrl, {
-      headers: { Accept: "application/json" },
-    });
-    const data: Naolib = await response.json();
-    return NextResponse.json(data);
-  } catch {
-    return NextResponse.json({ error: "Failed to fetch from Naolib API" }, { status: 500 });
+    // Search parent stops matching the query and include their associated quays
+    const stops = await prisma.stop.findMany({
+      where: {
+        name: {
+          contains: query.trim(),
+        },
+      },
+      include: {
+        quays: true,
+      },
+      take: 10, // Limit to top 10 matches for responsive UI performance
+    })
+
+    return NextResponse.json(stops)
+  } catch (error) {
+    console.error("Database search error:", error)
+    return NextResponse.json({ error: "Failed to search stops in database" }, { status: 500 })
   }
 }

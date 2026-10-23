@@ -16,9 +16,11 @@ export interface MonitoredStop {
     LineRef: Value
     PublishedLineName: LangValue[]
     DestinationName: LangValue[]
+    DirectionName: Value[]
     MonitoredCall: {
       DestinationDisplay: LangValue[]
       ExpectedArrivalTime: string
+      ArrivalStatus: string
       StopPointRef: Value
       StopPointName: LangValue[]
     }
