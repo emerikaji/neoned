@@ -1,20 +1,29 @@
 import { ImageResponse } from 'next/og';
 
 // Image metadata
-export const size = {
-  width: 32,
-  height: 32,
-};
+export function generateImageMetadata() {
+  return [
+    {
+      id: 'small',
+      contentType: 'image/png',
+      size: { width: 192, height: 192 },
+    },
+    {
+      id: 'large',
+      contentType: 'image/png',
+      size: { width: 512, height: 512 },
+    },
+  ]
+}
 
-export const contentType = 'image/png';
-
-// Image generation
-export default function Icon() {
+export default async function Icon({ id }: { id: Promise<string | number> }) {
+  const iconId = await id
+  const largeIcon= iconId === "large"
   return new ImageResponse(
     (
       <div
         style={{
-          fontSize: 20,
+          fontSize: largeIcon ? 256 : 96,
           background: '#0070f3',
           width: '100%',
           height: '100%',
@@ -30,7 +39,8 @@ export default function Icon() {
       </div>
     ),
     {
-      ...size,
+      width: largeIcon ? 512 : 192,
+      height: largeIcon ? 512 : 192,
     }
-  );
+  )
 }

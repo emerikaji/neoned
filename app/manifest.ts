@@ -7,18 +7,19 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'A Progressive Web App to browse nearby stations and obtain the next arrivals.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#000000',
+    background_color: '#f8fafc',
+    theme_color: '#0f172a',
+    orientation: 'portrait',
     icons: [
       {
-        src: '/icon-192x192.png',
+        src: '/icon/small',
         sizes: '192x192',
-        type: 'image/png',
+        type: 'image/png'
       },
       {
-        src: '/icon-512x512.png',
+        src: '/icon/large',
         sizes: '512x512',
-        type: 'image/png',
+        type: 'image/png'
       },
     ],
   }
