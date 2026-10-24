@@ -1,16 +1,20 @@
 # Stage 1: Install dependencies
 FROM node:24-alpine AS deps
 WORKDIR /app
+
+# Some node modules need this.
+RUN apk add --no-cache python3 make g++
+
 COPY package.json package-lock.json ./
 RUN npm ci
 
 # Stage 2: Build the application
 FROM node:24-alpine AS builder
 WORKDIR /app
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# If you are using Prisma with a local SQLite database inside the container,
-# make sure Prisma client is generated during build
+
 RUN npx prisma generate
 RUN npm run build
 
@@ -25,7 +29,6 @@ ENV HOSTNAME="0.0.0.0"
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy built assets and public folder
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
