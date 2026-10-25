@@ -16,7 +16,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Neoned",
-  description: "Real-time Naolib arrivals tracker",
+  description: "Nantes transportation built for the modern Web.",
+  appleWebApp: {
+    capable: true,
+    title: "Neoned"
+  }
 };
 
 export function generateStaticParams() {
