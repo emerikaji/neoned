@@ -1,6 +1,7 @@
 "use client";
 
 import { Stop, Arrival } from "@/types/neoned";
+import {useTranslations} from "next-intl";
 
 interface StopCardProps {
   stop: Stop;
@@ -21,6 +22,8 @@ export default function StopCard({
                                    onToggleLine,
                                    onSelectDirection,
                                  }: StopCardProps) {
+  const t = useTranslations("HomePage");
+
   const availableLines = Array.from(new Set(arrivals.map(a => a.line))).sort((a, b) =>
     a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
   );
@@ -62,12 +65,12 @@ export default function StopCard({
       <div className="flex justify-between items-start gap-4 mb-4">
         <div>
           <h3 className="text-lg font-bold tracking-tight">{stop.name}</h3>
-          <p className="text-xs text-slate-400 mt-0.5">{stop.quays.length} quays available</p>
+          <p className="text-xs text-slate-400 mt-0.5">{stop.quays.length} {t('quays')}</p>
         </div>
         <button
           onClick={() => onRemove(stop.id)}
           className="text-slate-400 hover:text-red-500 transition-colors p-1.5 rounded-xl hover:bg-red-50"
-          title="Remove station"
+          title={t('removeStation')}
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -78,7 +81,7 @@ export default function StopCard({
       {/* Passing Lines */}
       {availableLines.length > 0 && (
         <div className="mb-4">
-          <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Lines</div>
+          <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">{t('lines')}</div>
           <div className="flex flex-wrap gap-2.5">
             {availableLines.map(line => {
               const isSelected = selectedLines ? selectedLines.has(line) : false;
@@ -127,11 +130,11 @@ export default function StopCard({
 
       {/* Upcoming Departures */}
       <div className="pt-3 border-t border-slate-100">
-        <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Live Departures</div>
+        <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">{t('departures')}</div>
         {!arrivals ? (
-          <p className="text-sm text-slate-400 py-2">Loading arrivals...</p>
+          <p className="text-sm text-slate-400 py-2">{t('loadingDepartures')}</p>
         ) : filteredArrivals.length === 0 ? (
-          <p className="text-sm text-slate-400 py-2">No upcoming departures found.</p>
+          <p className="text-sm text-slate-400 py-2">{t('noDepartures')}</p>
         ) : (
           <div className="space-y-2">
             {filteredArrivals.map((arr, idx) => {
@@ -139,9 +142,9 @@ export default function StopCard({
 
               let statusBadge = null;
               if (arr.arrivalStatus === "early") {
-                statusBadge = <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800">Early</span>;
+                statusBadge = <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800">{t('early')}</span>;
               } else if (arr.arrivalStatus === "delayed" || arr.arrivalStatus === "late") {
-                statusBadge = <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-100 text-rose-800">Late</span>;
+                statusBadge = <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-100 text-rose-800">{t('late')}</span>;
               }
 
               return (

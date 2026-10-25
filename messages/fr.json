@@ -1,0 +1,19 @@
+{
+  "HomePage": {
+    "title": "Tableau de bord Naolib",
+    "searchPlaceholder": "Rechercher un arrêt (ex. Commerce)...",
+    "myStops": "Mes Arrêts Favoris",
+    "nearbyStops": "Arrêts à proximité",
+    "quays": "quais",
+    "lines": "Lignes",
+    "add": "Ajouter",
+    "added": "Ajouté",
+    "remove": "Supprimer",
+    "removeStation": "Supprimer station",
+    "departures": "Prochains Départs",
+    "loadingDepartures": "Chargement des transports...",
+    "noDepartures": "Pas de transports prévus.",
+    "early": "Avance",
+    "late": "Retard"
+  }
+}

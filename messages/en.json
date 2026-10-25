@@ -1,0 +1,19 @@
+{
+  "HomePage": {
+    "title": "Naolib Transit Dashboard",
+    "searchPlaceholder": "Search for a stop (e.g. Commerce)...",
+    "myStops": "My Saved Stops",
+    "nearbyStops": "Nearby Stops",
+    "quays": "quays",
+    "lines": "Lines",
+    "add": "Add",
+    "added": "Added",
+    "remove": "Remove",
+    "removeStation": "Remove station",
+    "departures": "Next Departures",
+    "loadingDepartures": "Loading arrivals...",
+    "noDepartures": "No upcoming departures.",
+    "early": "Early",
+    "late": "Late"
+  }
+}

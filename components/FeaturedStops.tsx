@@ -2,14 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { Stop } from "@/types/neoned";
+import {useTranslations} from "next-intl";
 
 interface FeaturedStopsProps {
   personalStops: Stop[];
   onAddStop: (stop: Stop) => void;
-  onRemoveStop: (stopId: string) => void;
 }
 
-export default function FeaturedStops({ personalStops, onAddStop, onRemoveStop }: FeaturedStopsProps) {
+export default function FeaturedStops({ personalStops, onAddStop }: FeaturedStopsProps) {
+  const t = useTranslations("HomePage");
+
   const [featuredStops, setFeaturedStops] = useState<Stop[]>([]);
   const [locationStatus, setLocationStatus] = useState<string>("Locating nearest stops...");
 
@@ -45,7 +47,7 @@ export default function FeaturedStops({ personalStops, onAddStop, onRemoveStop }
   return (
     <section className="mt-10">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-bold tracking-tight">Nearby Stops</h2>
+        <h2 className="text-lg font-bold tracking-tight">{t('nearbyStops')}</h2>
       </div>
 
       {locationStatus && <p className="text-sm text-slate-400 italic mb-3">{locationStatus}</p>}
@@ -63,23 +65,20 @@ export default function FeaturedStops({ personalStops, onAddStop, onRemoveStop }
               >
                 <div>
                   <h4 className="font-semibold text-sm">{stop.name}</h4>
-                  {distKm && <span className="text-xs text-slate-400">{distKm} km away</span>}
+                  {distKm && <span className="text-xs text-slate-400">{distKm} km</span>}
                 </div>
                 <button
+                  disabled={isAdded}
                   onClick={() => {
-                    if (isAdded) {
-                      onRemoveStop(stop.id);
-                    } else {
-                      onAddStop(stop);
-                    }
+                    onAddStop(stop);
                   }}
                   className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                     isAdded
-                      ? "border border-red-200 text-red-600 bg-red-50 hover:bg-red-100"
+                      ? "border border-red-200 text-red-600 bg-red-50"
                       : "border border-slate-200 text-slate-700 bg-slate-50 hover:bg-slate-100"
                   }`}
                 >
-                  {isAdded ? "Added" : "+ Add"}
+                  {isAdded ? t('added') : "+ " + t('add') }
                 </button>
               </div>
             );

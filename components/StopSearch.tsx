@@ -2,12 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { Stop } from "@/types/neoned";
+import {useTranslations} from "next-intl";
 
 interface StopSearchProps {
   onSelectStop: (stop: Stop) => void;
 }
 
 export default function StopSearch({ onSelectStop }: StopSearchProps) {
+  const t = useTranslations("HomePage");
+
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Stop[]>([]);
   const [loadingSearch, setLoadingSearch] = useState(false);
@@ -45,7 +48,7 @@ export default function StopSearch({ onSelectStop }: StopSearchProps) {
       <div className="relative">
         <input
           type="text"
-          placeholder="Search for a stop (e.g. Commerce)..."
+          placeholder={t('searchPlaceholder')}
           value={query}
           onChange={handleQueryChange}
           className="w-full px-4 py-3.5 bg-white rounded-2xl shadow-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all text-base placeholder:text-slate-400"
