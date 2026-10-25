@@ -51,7 +51,7 @@ export async function GET(request: Request) {
 
     // Sort by closest distance and take top 5
     stopsWithDistance.sort((a, b) => a.distance - b.distance);
-    const closestStops = stopsWithDistance.slice(0, 5);
+    const closestStops = stopsWithDistance.slice(0, 6);
 
     return NextResponse.json(closestStops);
   } catch (error) {

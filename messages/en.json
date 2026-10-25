@@ -2,6 +2,7 @@
   "HomePage": {
     "title": "Naolib Transit Dashboard",
     "searchPlaceholder": "Search for a stop (e.g. Commerce)...",
+    "searching": "Searching...",
     "myStops": "My Saved Stops",
     "nearbyStops": "Nearby Stops",
     "quays": "quays",

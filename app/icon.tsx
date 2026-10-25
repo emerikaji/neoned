@@ -4,22 +4,22 @@ import { ImageResponse } from 'next/og';
 export function generateImageMetadata() {
   return [
     {
-      id: 'small',
+      id: 'small.png',
       contentType: 'image/png',
       size: { width: 192, height: 192 },
     },
     {
-      id: 'smallmask',
+      id: 'smallmask.png',
       contentType: 'image/png',
       size: { width: 192, height: 192 },
     },
     {
-      id: 'large',
+      id: 'large.png',
       contentType: 'image/png',
       size: { width: 512, height: 512 },
     },
     {
-      id: 'largemask',
+      id: 'largemask.png',
       contentType: 'image/png',
       size: { width: 512, height: 512 },
     },
@@ -27,9 +27,9 @@ export function generateImageMetadata() {
 }
 
 export default async function Icon({ id }: { id: Promise<string | number> }) {
-  const iconId = await id
-  const largeIcon= iconId.toString().startsWith("large")
-  const maskableIcon = iconId.toString().endsWith("mask")
+  const iconId = (await id as string).split('.')[0]
+  const largeIcon= iconId.startsWith("large")
+  const maskableIcon = iconId.endsWith("mask")
   const iconSize = largeIcon ? 512 : 192
   const fontSize= maskableIcon ? 0.5*iconSize : 0.75*iconSize
 
@@ -45,7 +45,7 @@ export default async function Icon({ id }: { id: Promise<string | number> }) {
           alignItems: 'center',
           justifyContent: 'center',
           color: 'white',
-          borderRadius: '28%',
+          borderRadius: maskableIcon ? '' : '28%',
           fontWeight: 'bold',
         }}
       >

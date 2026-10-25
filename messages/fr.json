@@ -2,6 +2,7 @@
   "HomePage": {
     "title": "Tableau de bord Naolib",
     "searchPlaceholder": "Rechercher un arrêt (ex. Commerce)...",
+    "searching": "Recherche...",
     "myStops": "Mes Arrêts Favoris",
     "nearbyStops": "Arrêts à proximité",
     "quays": "quais",

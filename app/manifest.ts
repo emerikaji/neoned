@@ -15,25 +15,25 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: 'portrait',
     icons: [
       {
-        src: '/icon/small',
+        src: '/icon/small.png',
         sizes: '192x192',
         type: 'image/png',
         purpose: 'any'
       },
       {
-        src: '/icon/smallmask',
+        src: '/icon/smallmask.png',
         sizes: '192x192',
         type: 'image/png',
         purpose: 'maskable'
       },
       {
-        src: '/icon/large',
+        src: '/icon/large.png',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'any'
       },
       {
-        src: '/icon/largemask',
+        src: '/icon/largemask.png',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'maskable'

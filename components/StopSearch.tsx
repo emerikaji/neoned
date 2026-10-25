@@ -55,7 +55,7 @@ export default function StopSearch({ onSelectStop }: StopSearchProps) {
         />
         {loadingSearch && (
           <div className="absolute right-4 top-4 text-xs text-slate-400 animate-pulse">
-            Searching...
+            {t('searching')}
           </div>
         )}
       </div>
@@ -73,7 +73,7 @@ export default function StopSearch({ onSelectStop }: StopSearchProps) {
               className="px-4 py-3 hover:bg-slate-50 cursor-pointer transition-colors flex items-center justify-between"
             >
               <span className="font-medium">{stop.name}</span>
-              <span className="text-xs text-slate-400">{stop.quays.length} quays</span>
+              <span className="text-xs text-slate-400">{stop.quays.length} {t('quays')}</span>
             </li>
           ))}
         </ul>
