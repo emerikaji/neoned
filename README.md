@@ -1,8 +1,8 @@
 # Neoned
 
 [![GitHub Release](https://img.shields.io/github/v/release/emerikaji/neoned?style=flat-square)](https://github.com/emerikaji/neoned/releases)
-[![GitHub Stars](https://img.shields.io/github/stars/emerikaji/YOUR_REPO?style=flat-square)](https://github.com/emerikaji/neoned/stargazers)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/emerikaji/neoned?style=flat-square)](https://github.com/emerikaji/neoned/stargazers)
+[![License: AGPL](https://img.shields.io/badge/license-AGPL--3.0-blue)](LICENSE)
 
 A fast, responsive real-time public transit companion Progressive Web App for Nantes (Naolib). Designed to provide commuters with instant live arrival times, platform/quay assignments, multi-line filtering, and critical service disruption alerts.
 
@@ -86,4 +86,4 @@ Please ensure your code follows the existing style guidelines and includes clear
 
 ## 📄 License
 
-This project is open-source and available under the MIT License.
+This project is open-source and available under the AGPL 3.0 License.
