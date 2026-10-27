@@ -5,14 +5,16 @@ services:
     networks:
       - traefik_public
     environment:
-      - API_KEY=${API_KEY}
+      - SIRI_API_KEY=${SIRI_API_KEY}
+      - GTFSRT_API_KEY=&{GTFSRT_API_KEY}
       - DATABASE_URL=${DATABASE_URL}
+      - PRODUCTION=${PRODUCTION}
       - NODE_ENV=production
     volumes:
       - ./dev.db:/app/dev.db
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.neoned.rule=Host(`neoned.eaji.cc`)'
+      - 'traefik.http.routers.neoned.rule=Host(`example.com`)'
       - 'traefik.http.routers.neoned.entrypoints=websecure'
       - 'traefik.http.services.neoned.loadbalancer.server.port=3000'
 

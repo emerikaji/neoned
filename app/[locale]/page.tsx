@@ -47,7 +47,7 @@ export default function Home() {
           const quayNumber = j + 1;
 
           try {
-            const res = await fetch(`/api/naolib?endpoint=stop-monitoring&MonitoringRef=${quay.id}`);
+            const res = await fetch(`/api/naolib?api=siri&endpoint=stop-monitoring&MonitoringRef=${quay.id}`);
             const data: Naolib = await res.json();
             const visits = data?.Siri?.ServiceDelivery?.StopMonitoringDelivery?.[0]?.MonitoredStopVisit || [];
 

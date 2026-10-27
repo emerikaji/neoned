@@ -13,8 +13,10 @@
     "@prisma/client": "^7.10.1",
     "better-sqlite3": "^13.0.3",
     "csv-parse": "^7.0.3",
+    "gtfs-realtime-bindings": "^2.2.0",
     "next": "16.4.0",
     "next-intl": "^4.14.9",
+    "protobufjs": "^8.8.1",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
